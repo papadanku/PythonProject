@@ -1,4 +1,4 @@
-# 3D-Engine-Python
+# PythonProject
 
 My take on Coder Space's Python 3D Engine Series.
 
