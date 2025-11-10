@@ -26,4 +26,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'furo'
+html_theme = 'shibuya'
+html_theme_options = {
+    "github_url": "https://github.com/papadanku/papadanku.github.io",
+    "youtube_url": "https://www.youtube.com/@papadanku"
+}
