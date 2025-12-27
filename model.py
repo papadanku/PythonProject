@@ -9,7 +9,23 @@ if __name__ == '__main__':
 
 
 class BaseModel:
+    """
+    Base class for all 3D models with position, rotation, and scale.
+    Provides fundamental model matrix calculations and rendering functionality.
+    """
+
     def __init__(self, app, vao_name, tex_id, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+        """
+        Initialize base model with transformation properties and rendering data.
+
+        Args:
+            app: Reference to main application
+            vao_name: Name of vertex array object to use
+            tex_id: Texture identifier
+            pos: Position in world coordinates (x, y, z)
+            rot: Rotation in degrees (x, y, z)
+            scale: Scale factors (x, y, z)
+        """
         self.app = app
         self.pos = pos
         self.vao_name = vao_name
@@ -23,12 +39,19 @@ class BaseModel:
 
     def update(self):
         """
-        Override update(x) in a subclass
+        Update model state before rendering.
+        Subclasses override this method for custom behavior.
         """
 
         pass
 
     def get_model_matrix(self):
+        """
+        Calculate model matrix combining translation, rotation, and scale.
+
+        Returns:
+            mat4: Model transformation matrix
+        """
         # NOTE: This is just an identity matrix
         m_model = glm.mat4()
         # Translate
@@ -42,6 +65,9 @@ class BaseModel:
         return m_model
 
     def render(self):
+        """
+        Update model state and render using associated VAO.
+        """
         self.update()
         self.vao.render()
 
@@ -57,9 +83,9 @@ class ExtendedBaseModel(BaseModel):
 
     def update(self):
         """
-            Update dynamic uniform attributes        
+            Update dynamic uniform attributes
         """
-        
+
         self.texture.use(location=0)
         self.program['camPos'].write(self.camera.position)
         self.program['m_view'].write(self.camera.m_view)
@@ -67,7 +93,7 @@ class ExtendedBaseModel(BaseModel):
 
     def update_shadow(self):
         self.shadow_program['m_model'].write(self.m_model)
-    
+
     def render_shadow(self):
         self.update_shadow()
         self.shadow_vao.render()
@@ -103,36 +129,101 @@ class ExtendedBaseModel(BaseModel):
 
 
 class Cube(ExtendedBaseModel):
+    """
+    Basic cube model with texture and lighting support.
+    """
+
     def __init__(self, app, vao_name='cube', tex_id=0, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+        """
+        Initialize cube model with default parameters.
+
+        Args:
+            app: Reference to main application
+            vao_name: Name of vertex array object (default: 'cube')
+            tex_id: Texture identifier (default: 0)
+            pos: Position in world coordinates (default: origin)
+            rot: Rotation in degrees (default: no rotation)
+            scale: Scale factors (default: unit scale)
+        """
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 
 class MovingCube(Cube):
+    """
+    Animated cube that rotates continuously.
+    """
+
     def __init__(self, *args, **kwargs):
+        """
+        Initialize moving cube with same parameters as base cube.
+        """
         super().__init__(*args, **kwargs)
 
     def update(self):
+        """
+        Update cube rotation based on application time.
+        Creates continuous spinning animation.
+        """
         self.m_model = self.get_model_matrix()
         super().update()
 
 
 class Cat(ExtendedBaseModel):
+    """
+    Cat model with specific orientation and texture.
+    """
+
     def __init__(self, app, vao_name='cat', tex_id='cat',
                  pos=(0, 0, 0), rot=(-90, 0, 0), scale=(1, 1, 1)):
+        """
+        Initialize cat model with default orientation.
+
+        Args:
+            app: Reference to main application
+            vao_name: Name of vertex array object (default: 'cat')
+            tex_id: Texture identifier (default: 'cat')
+            pos: Position in world coordinates (default: origin)
+            rot: Rotation in degrees (default: -90° X rotation)
+            scale: Scale factors (default: unit scale)
+        """
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 
 class SkyBox(BaseModel):
+    """
+    Basic skybox that renders a cubemap texture.
+    Uses simplified view matrix to prevent skybox rotation with camera.
+    """
+
     def __init__(self, app, vao_name='skybox', tex_id='skybox',
                  pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+        """
+        Initialize skybox with cubemap texture.
+
+        Args:
+            app: Reference to main application
+            vao_name: Name of vertex array object (default: 'skybox')
+            tex_id: Texture identifier (default: 'skybox')
+            pos: Position in world coordinates (default: origin)
+            rot: Rotation in degrees (default: no rotation)
+            scale: Scale factors (default: unit scale)
+        """
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         # NOTE: Initialize the model's attributes here
         self.on_init()
 
     def update(self):
+        """
+        Update skybox view matrix to remove camera rotation.
+        Prevents skybox from rotating with camera movement.
+        """
         self.program['m_view'].write(glm.mat4(glm.mat3(self.camera.m_view)))
 
     def on_init(self):
+        """
+        Initialize skybox textures and matrices.
+        Sets up cubemap texture and projection/view matrices.
+        """
         # Assign uniform textures to a shader program
         self.texture = self.app.mesh.texture.textures[self.tex_id]
         self.program['u_texture_skybox'] = 0
@@ -143,17 +234,41 @@ class SkyBox(BaseModel):
 
 
 class AdvancedSkyBox(BaseModel):
+    """
+    Advanced skybox with proper perspective projection.
+    Uses inverse projection-view matrix for accurate cubemap sampling.
+    """
+
     def __init__(self, app, vao_name='advanced_skybox', tex_id='skybox',
                  pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+        """
+        Initialize advanced skybox with cubemap texture.
+
+        Args:
+            app: Reference to main application
+            vao_name: Name of vertex array object (default: 'advanced_skybox')
+            tex_id: Texture identifier (default: 'skybox')
+            pos: Position in world coordinates (default: origin)
+            rot: Rotation in degrees (default: no rotation)
+            scale: Scale factors (default: unit scale)
+        """
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         # NOTE: Initialize the model's attributes here
         self.on_init()
 
     def update(self):
+        """
+        Update inverse projection-view matrix for proper cubemap sampling.
+        Converts clip coordinates back to world space for accurate texture lookup.
+        """
         m_view = glm.mat4(glm.mat3(self.camera.m_view))
         self.program['m_invProjView'].write(glm.inverse(self.camera.m_proj * m_view))
 
     def on_init(self):
+        """
+        Initialize skybox textures.
+        Sets up cubemap texture for advanced rendering.
+        """
         # Assign uniform textures to a shader program
         self.texture = self.app.mesh.texture.textures[self.tex_id]
         self.program['u_texture_skybox'] = 0

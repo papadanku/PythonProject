@@ -18,7 +18,18 @@ from scene import Scene
 from scene_renderer import SceneRenderer
 
 class GraphicsEngine():
+    """
+    Main graphics engine that initializes OpenGL context, manages game loop, and coordinates all rendering components.
+    Handles window creation, input processing, and rendering pipeline execution.
+    """
+
     def __init__(self, win_size=(1600, 900)):
+        """
+        Initialize graphics engine with specified window size, OpenGL context, and core components.
+
+        Args:
+            win_size: Tuple containing window width and height in pixels (default: 1600x900)
+        """
         # Initialize PyGame modules
         pg.init()
         # Initialize window size
@@ -53,9 +64,17 @@ class GraphicsEngine():
         self.scene_renderer = SceneRenderer(self)
 
     def get_time(self):
+        """
+        Update current time in seconds since application start.
+        Converts milliseconds to seconds for consistent time units.
+        """
         self.time = pg.time.get_ticks() * 0.001
 
     def check_events(self):
+        """
+        Process PyGame events and handle window close/escape key.
+        Cleans up resources and exits application when quit event occurs.
+        """
         for event in pg.event.get():
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 # Release everything from memory
@@ -65,6 +84,10 @@ class GraphicsEngine():
                 sys.exit()
 
     def render(self):
+        """
+        Clear framebuffer, render scene, and swap buffers.
+        Sets background color and executes complete rendering pipeline.
+        """
         # Clear framebuffer
         self.ctx.clear(color=(0.08, 0.16, 0.18))
         # Render scene
@@ -73,6 +96,10 @@ class GraphicsEngine():
         pg.display.flip()
 
     def run(self):
+        """
+        Main game loop that updates time, processes events, updates camera, and renders scene.
+        Runs at 60 FPS and maintains consistent delta time for smooth animations.
+        """
         while True:
             self.get_time()
             self.check_events()

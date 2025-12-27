@@ -4,7 +4,7 @@ This module processes an application's vertex buffer objects (VBOs)
 
 NOTE:
 - VBOs are buffer objects we use for vertex processing
-- In reality, we can use buffer objects for means outside of vertex processing 
+- In reality, we can use buffer objects for means outside of vertex processing
 """
 
 # Import Python modules
@@ -26,37 +26,89 @@ class VBO:
 
 
 class BaseVBO:
+    """
+    Base class for vertex buffer objects.
+    Provides common VBO functionality that subclasses extend with specific geometry.
+    """
+
     def __init__(self, ctx):
+        """
+        Initialize base VBO with context and create vertex buffer.
+
+        Args:
+            ctx: ModernGL context for buffer creation
+        """
         self.ctx = ctx
         self.vbo = self.get_vbo()
         self.format: str = None
         self.attribs: list = None
 
-    # NOTE: Override get_vertex_data() in a subclass because it is geometry-dependant
-    def get_vertex_data(self): ...
+    def get_vertex_data(self):
+        """
+        Get vertex data for specific geometry.
+        Subclasses override this method with geometry-specific implementation.
+        """
+        ...
 
     def get_vbo(self):
+        """
+        Create vertex buffer object from vertex data.
+
+        Returns:
+            Vertex buffer object containing geometry data
+        """
         vertex_data = self.get_vertex_data()
         vbo = self.ctx.buffer(vertex_data)
         return vbo
 
     def destroy(self):
+        """
+        Release vertex buffer resources.
+        Clean up VBO when no longer needed.
+        """
         self.vbo.release()
 
 
 class CubeVBO(BaseVBO):
+    """
+    Cube vertex buffer object with texture coordinates and normals.
+    Generates vertex data for a unit cube centered at origin.
+    """
+
     def __init__(self, ctx):
+        """
+        Initialize cube VBO with vertex format and attributes.
+
+        Args:
+            ctx: ModernGL context for buffer creation
+        """
         super().__init__(ctx)
         self.format = '2f 3f 3f'
         self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
 
     @staticmethod
     def get_data(vertices, indices):
+        """
+        Extract vertex data from vertices using indices.
+
+        Args:
+            vertices: List of vertex positions
+            indices: List of triangle indices
+
+        Returns:
+            NumPy array of vertex data in order specified by indices
+        """
         # NOTE: Uses list comprehension to Outputs large list of tuples!
         data = [vertices[ind] for triangle in indices for ind in triangle]
         return np.array(data, dtype='f4')
 
     def get_vertex_data(self):
+        """
+        Generate complete vertex data for cube including positions, normals, and texture coordinates.
+
+        Returns:
+            NumPy array containing interleaved vertex data
+        """
         # Get vertex coordinates
         vertices = [(-1, -1, 1), ( 1, -1,  1), (1,  1,  1), (-1, 1,  1),
                     (-1, 1, -1), (-1, -1, -1), (1, -1, -1), ( 1, 1, -1)]
@@ -96,12 +148,29 @@ class CubeVBO(BaseVBO):
 
 
 class CatVBO(BaseVBO):
+    """
+    Cat model vertex buffer object loaded from OBJ file.
+    Uses pywavefront to load complex mesh data with textures and normals.
+    """
+
     def __init__(self, app):
+        """
+        Initialize cat VBO with vertex format and attributes.
+
+        Args:
+            app: Reference to main application
+        """
         super().__init__(app)
         self.format = '2f 3f 3f'
         self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
 
     def get_vertex_data(self):
+        """
+        Load cat model vertex data from OBJ file.
+
+        Returns:
+            NumPy array containing cat mesh vertex data
+        """
         objs = pywavefront.Wavefront('objects/cat/20430_Cat_v1_NEW.obj', cache=True, parse=True)
         obj = objs.materials.popitem()[1]
         vertex_data = obj.vertices
@@ -110,18 +179,45 @@ class CatVBO(BaseVBO):
 
 
 class SkyBoxVBO(BaseVBO):
+    """
+    Skybox vertex buffer object for cubemap rendering.
+    Generates inside-out cube geometry for skybox rendering.
+    """
+
     def __init__(self, ctx):
+        """
+        Initialize skybox VBO with vertex format and attributes.
+
+        Args:
+            ctx: ModernGL context for buffer creation
+        """
         super().__init__(ctx)
         self.format = '3f'
         self.attribs = ['in_position']
 
     @staticmethod
     def get_data(vertices, indices):
+        """
+        Extract vertex data from vertices using indices.
+
+        Args:
+            vertices: List of vertex positions
+            indices: List of triangle indices
+
+        Returns:
+            NumPy array of vertex data in order specified by indices
+        """
         # NOTE: Uses list comprehension to Outputs large list of tuples!
         data = [vertices[ind] for triangle in indices for ind in triangle]
         return np.array(data, dtype='f4')
 
     def get_vertex_data(self):
+        """
+        Generate vertex data for inside-out skybox cube.
+
+        Returns:
+            NumPy array containing skybox vertex data
+        """
         # Get vertex coordinates
         vertices = [(-1, -1, 1), ( 1, -1,  1), (1,  1,  1), (-1, 1,  1),
                     (-1, 1, -1), (-1, -1, -1), (1, -1, -1), ( 1, 1, -1)]
@@ -138,12 +234,29 @@ class SkyBoxVBO(BaseVBO):
 
 
 class AdvancedSkyBoxVBO(BaseVBO):
+    """
+    Advanced skybox VBO using fullscreen triangle for efficient rendering.
+    Generates a large triangle that covers the entire screen for skybox projection.
+    """
+
     def __init__(self, ctx):
+        """
+        Initialize advanced skybox VBO with vertex format and attributes.
+
+        Args:
+            ctx: ModernGL context for buffer creation
+        """
         super().__init__(ctx)
         self.format = '3f'
         self.attribs = ['in_position']
 
     def get_vertex_data(self):
+        """
+        Generate vertex data for fullscreen triangle.
+
+        Returns:
+            NumPy array containing three vertices that cover screen space
+        """
         # NOTE: Generates a fullscreen quad through a large triangle
         z = 0.9999
         vertices = [(-1, -1, z), (3, -1, z), (-1, 3, z)]

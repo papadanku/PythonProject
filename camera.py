@@ -4,14 +4,29 @@ if __name__ == '__main__':
     import glm
     import pygame as pg
 
-FOV = 50 # Value in degrees
-NEAR = 0.1
-FAR = 100
-SPEED = 0.01
-SENSITIVITY = 0.05
+# Camera constants
+FOV = 50 # Field of view in degrees
+NEAR = 0.1 # Near clipping plane distance
+FAR = 100 # Far clipping plane distance
+SPEED = 0.01 # Camera movement speed
+SENSITIVITY = 0.05 # Mouse look sensitivity
 
 class Camera:
+    """
+    First-person camera that handles view projection, movement, and rotation.
+    Provides matrix calculations for 3D scene rendering and user navigation.
+    """
+
     def __init__(self, app, position=(0, 0, 4), yaw=-90, pitch=0):
+        """
+        Initialize camera with position, orientation, and projection matrices.
+
+        Args:
+            app: Reference to main application
+            position: Initial camera position (x, y, z)
+            yaw: Initial horizontal rotation in degrees
+            pitch: Initial vertical rotation in degrees
+        """
         self.app = app
         self.aspect_ratio = app.WIN_SIZE[0] / app.WIN_SIZE[1]
         # Setup camera/eye position and up-vector
@@ -30,6 +45,10 @@ class Camera:
         self.m_proj = self.get_projection_matrix()
 
     def rotate(self):
+        """
+        Update camera yaw and pitch based on mouse movement.
+        Applies sensitivity scaling and clamps pitch to prevent over-rotation.
+        """
         rel_x, rel_y = pg.mouse.get_rel()
         self.yaw += rel_x * SENSITIVITY
         self.pitch -= rel_y * SENSITIVITY
@@ -37,9 +56,9 @@ class Camera:
 
     def update_camera_vectors(self):
         """
-        We emulate a first-person camera by rotating around the Z-axis and X-axis
+        Recalculate forward, right, and up vectors based on current orientation.
+        Uses spherical coordinates to convert yaw/pitch angles to 3D direction vectors.
         """
-
         yaw = glm.radians(self.yaw)
         pitch = glm.radians(self.pitch)
 
@@ -52,6 +71,10 @@ class Camera:
         self.up = glm.normalize(glm.cross(self.right, self.forward))
 
     def update(self):
+        """
+        Update camera position and orientation each frame.
+        Handles movement, rotation, and recalculates view matrix.
+        """
         self.move()
         self.rotate()
         self.update_camera_vectors()
@@ -59,6 +82,10 @@ class Camera:
         self.m_view = self.get_view_matrix()
 
     def move(self):
+        """
+        Handle keyboard input for camera movement in 3D space.
+        Uses WASD for horizontal movement and QE for vertical movement.
+        """
         velocity = SPEED * self.app.delta_time
         keys = pg.key.get_pressed()
         if keys[pg.K_w]:
@@ -75,7 +102,19 @@ class Camera:
             self.position -= self.up * velocity
 
     def get_view_matrix(self):
+        """
+        Calculate view matrix using camera position and orientation.
+
+        Returns:
+            mat4: View matrix for transforming world coordinates to camera space
+        """
         return glm.lookAt(self.position, self.position + self.forward, self.up)
 
     def get_projection_matrix(self):
+        """
+        Calculate perspective projection matrix.
+
+        Returns:
+            mat4: Projection matrix for perspective transformation
+        """
         return glm.perspective(glm.radians(FOV), self.aspect_ratio, NEAR, FAR)

@@ -4,7 +4,18 @@ This module generates and destroys an application's shader programs
 """
 
 class ShaderProgram:
+    """
+    Manage compilation and lifecycle of GLSL shader programs.
+    Loads, compiles, and maintains shader programs for different rendering techniques.
+    """
+
     def __init__(self, ctx):
+        """
+        Initialize shader program manager and load all required shaders.
+
+        Args:
+            ctx: ModernGL context for shader compilation
+        """
         self.ctx = ctx
         self.programs = {}
         self.programs['default'] = self.get_program('default')
@@ -13,6 +24,15 @@ class ShaderProgram:
         self.programs['shadow_map'] = self.get_program('shadow_map')
 
     def get_program(self, shader_program_name):
+        """
+        Load and compile vertex/fragment shaders from files.
+
+        Args:
+            shader_program_name: Base name of shader files (without extension)
+
+        Returns:
+            Compiled shader program ready for use
+        """
         # Get the vertex shader source code
         with open(f'shaders/{shader_program_name}.vert') as file:
             vertex_shader = file.read()
@@ -26,5 +46,9 @@ class ShaderProgram:
         return program
 
     def destroy(self):
+        """
+        Release program data from memory.
+        Clean up all compiled shader programs.
+        """
         # Release program data from memory
         [program.release() for program in self.programs.values()]

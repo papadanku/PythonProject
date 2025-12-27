@@ -9,7 +9,18 @@ from model import *
 
 
 class Scene:
+    """
+    Manage collection of 3D objects and scene composition.
+    Handles scene loading, object management, and dynamic updates.
+    """
+
     def __init__(self, app):
+        """
+        Initialize scene with application reference and load objects.
+
+        Args:
+            app: Reference to main application
+        """
         self.app = app
         self.objects = []
         self.load()
@@ -17,9 +28,19 @@ class Scene:
         self.skybox = AdvancedSkyBox(app)
 
     def add_object(self, obj):
+        """
+        Add object to scene for rendering.
+
+        Args:
+            obj: 3D object to add to scene
+        """
         self.objects.append(obj)
 
     def load(self):
+        """
+        Create and position all scene objects including floor, columns, cat, and moving cube.
+        Sets up complete 3D environment with various textures and models.
+        """
         app = self.app
         add = self.add_object
 
@@ -42,4 +63,8 @@ class Scene:
         add(self.moving_cube)
 
     def update(self):
+        """
+        Update dynamic objects in scene.
+        Animates moving cube based on application time.
+        """
         self.moving_cube.rot.xyz = self.app.time
