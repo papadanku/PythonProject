@@ -35,8 +35,8 @@ class BaseVBO:
         """
         Initialize base VBO with context and create vertex buffer.
 
-        Args:
-            ctx: ModernGL context for buffer creation
+        :param ctx: ModernGL context for buffer creation
+        :type ctx: ModernGL context
         """
         self.ctx = ctx
         self.vbo = self.get_vbo()
@@ -54,8 +54,8 @@ class BaseVBO:
         """
         Create vertex buffer object from vertex data.
 
-        Returns:
-            Vertex buffer object containing geometry data
+        :return: Vertex buffer object containing geometry data
+        :rtype: VBO
         """
         vertex_data = self.get_vertex_data()
         vbo = self.ctx.buffer(vertex_data)
@@ -79,8 +79,8 @@ class CubeVBO(BaseVBO):
         """
         Initialize cube VBO with vertex format and attributes.
 
-        Args:
-            ctx: ModernGL context for buffer creation
+        :param ctx: ModernGL context for buffer creation
+        :type ctx: ModernGL context
         """
         super().__init__(ctx)
         self.format = '2f 3f 3f'
@@ -91,12 +91,12 @@ class CubeVBO(BaseVBO):
         """
         Extract vertex data from vertices using indices.
 
-        Args:
-            vertices: List of vertex positions
-            indices: List of triangle indices
-
-        Returns:
-            NumPy array of vertex data in order specified by indices
+        :param vertices: List of vertex positions
+        :type vertices: list
+        :param indices: List of triangle indices
+        :type indices: list
+        :return: NumPy array of vertex data in order specified by indices
+        :rtype: numpy.ndarray
         """
         # NOTE: Uses list comprehension to Outputs large list of tuples!
         data = [vertices[ind] for triangle in indices for ind in triangle]
@@ -106,8 +106,8 @@ class CubeVBO(BaseVBO):
         """
         Generate complete vertex data for cube including positions, normals, and texture coordinates.
 
-        Returns:
-            NumPy array containing interleaved vertex data
+        :return: NumPy array containing interleaved vertex data
+        :rtype: numpy.ndarray
         """
         # Get vertex coordinates
         vertices = [(-1, -1, 1), ( 1, -1,  1), (1,  1,  1), (-1, 1,  1),
@@ -157,8 +157,8 @@ class CatVBO(BaseVBO):
         """
         Initialize cat VBO with vertex format and attributes.
 
-        Args:
-            app: Reference to main application
+        :param app: Reference to main application
+        :type app: Application
         """
         super().__init__(app)
         self.format = '2f 3f 3f'
@@ -168,8 +168,8 @@ class CatVBO(BaseVBO):
         """
         Load cat model vertex data from OBJ file.
 
-        Returns:
-            NumPy array containing cat mesh vertex data
+        :return: NumPy array containing cat mesh vertex data
+        :rtype: numpy.ndarray
         """
         objs = pywavefront.Wavefront('objects/cat/20430_Cat_v1_NEW.obj', cache=True, parse=True)
         obj = objs.materials.popitem()[1]
@@ -188,8 +188,8 @@ class SkyBoxVBO(BaseVBO):
         """
         Initialize skybox VBO with vertex format and attributes.
 
-        Args:
-            ctx: ModernGL context for buffer creation
+        :param ctx: ModernGL context for buffer creation
+        :type ctx: ModernGL context
         """
         super().__init__(ctx)
         self.format = '3f'
@@ -200,12 +200,12 @@ class SkyBoxVBO(BaseVBO):
         """
         Extract vertex data from vertices using indices.
 
-        Args:
-            vertices: List of vertex positions
-            indices: List of triangle indices
-
-        Returns:
-            NumPy array of vertex data in order specified by indices
+        :param vertices: List of vertex positions
+        :type vertices: list
+        :param indices: List of triangle indices
+        :type indices: list
+        :return: NumPy array of vertex data in order specified by indices
+        :rtype: numpy.ndarray
         """
         # NOTE: Uses list comprehension to Outputs large list of tuples!
         data = [vertices[ind] for triangle in indices for ind in triangle]
@@ -215,8 +215,8 @@ class SkyBoxVBO(BaseVBO):
         """
         Generate vertex data for inside-out skybox cube.
 
-        Returns:
-            NumPy array containing skybox vertex data
+        :return: NumPy array containing skybox vertex data
+        :rtype: numpy.ndarray
         """
         # Get vertex coordinates
         vertices = [(-1, -1, 1), ( 1, -1,  1), (1,  1,  1), (-1, 1,  1),
@@ -243,8 +243,8 @@ class AdvancedSkyBoxVBO(BaseVBO):
         """
         Initialize advanced skybox VBO with vertex format and attributes.
 
-        Args:
-            ctx: ModernGL context for buffer creation
+        :param ctx: ModernGL context for buffer creation
+        :type ctx: ModernGL context
         """
         super().__init__(ctx)
         self.format = '3f'
@@ -254,8 +254,8 @@ class AdvancedSkyBoxVBO(BaseVBO):
         """
         Generate vertex data for fullscreen triangle.
 
-        Returns:
-            NumPy array containing three vertices that cover screen space
+        :return: NumPy array containing three vertices that cover screen space
+        :rtype: numpy.ndarray
         """
         # NOTE: Generates a fullscreen quad through a large triangle
         z = 0.9999

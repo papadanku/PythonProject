@@ -21,11 +21,14 @@ class Camera:
         """
         Initialize camera with position, orientation, and projection matrices.
 
-        Args:
-            app: Reference to main application
-            position: Initial camera position (x, y, z)
-            yaw: Initial horizontal rotation in degrees
-            pitch: Initial vertical rotation in degrees
+        :param app: Reference to main application
+        :type app: Application
+        :param position: Initial camera position (x, y, z)
+        :type position: tuple
+        :param yaw: Initial horizontal rotation in degrees
+        :type yaw: int
+        :param pitch: Initial vertical rotation in degrees
+        :type pitch: int
         """
         self.app = app
         self.aspect_ratio = app.WIN_SIZE[0] / app.WIN_SIZE[1]
@@ -105,8 +108,8 @@ class Camera:
         """
         Calculate view matrix using camera position and orientation.
 
-        Returns:
-            mat4: View matrix for transforming world coordinates to camera space
+        :return: View matrix for transforming world coordinates to camera space
+        :rtype: mat4
         """
         return glm.lookAt(self.position, self.position + self.forward, self.up)
 
@@ -114,7 +117,7 @@ class Camera:
         """
         Calculate perspective projection matrix.
 
-        Returns:
-            mat4: Projection matrix for perspective transformation
+        :return: Projection matrix for perspective transformation
+        :rtype: mat4
         """
         return glm.perspective(glm.radians(FOV), self.aspect_ratio, NEAR, FAR)

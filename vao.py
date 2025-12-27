@@ -18,8 +18,8 @@ class VAO:
         """
         Initialize VAO manager and create VAOs for all geometry types.
 
-        Args:
-            ctx: ModernGL context for VAO creation
+        :param ctx: ModernGL context for VAO creation
+        :type ctx: ModernGL context
         """
         self.ctx = ctx
         self.vbo = VBO(ctx)
@@ -60,12 +60,12 @@ class VAO:
         """
         Format VBO data into renderable VAO for specific shader.
 
-        Args:
-            program: Shader program to use for rendering
-            vbo: Vertex buffer object containing geometry data
-
-        Returns:
-            Vertex array object ready for rendering
+        :param program: Shader program to use for rendering
+        :type program: ShaderProgram
+        :param vbo: Vertex buffer object containing geometry data
+        :type vbo: VBO
+        :return: Vertex array object ready for rendering
+        :rtype: VAO
         """
         vao = self.ctx.vertex_array(program, [(vbo.vbo, vbo.format, *vbo.attribs)], skip_errors=True)
         return vao

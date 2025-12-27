@@ -18,8 +18,8 @@ class Scene:
         """
         Initialize scene with application reference and load objects.
 
-        Args:
-            app: Reference to main application
+        :param app: Reference to main application
+        :type app: Application
         """
         self.app = app
         self.objects = []
@@ -31,8 +31,8 @@ class Scene:
         """
         Add object to scene for rendering.
 
-        Args:
-            obj: 3D object to add to scene
+        :param obj: 3D object to add to scene
+        :type obj: BaseModel
         """
         self.objects.append(obj)
 

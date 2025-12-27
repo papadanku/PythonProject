@@ -9,8 +9,8 @@ class SceneRenderer:
         """
         Initialize scene renderer with application context and resources.
 
-        Args:
-            app: Reference to main application
+        :param app: Reference to main application
+        :type app: Application
         """
         self.app = app
         self.ctx = app.ctx

@@ -18,13 +18,18 @@ class BaseModel:
         """
         Initialize base model with transformation properties and rendering data.
 
-        Args:
-            app: Reference to main application
-            vao_name: Name of vertex array object to use
-            tex_id: Texture identifier
-            pos: Position in world coordinates (x, y, z)
-            rot: Rotation in degrees (x, y, z)
-            scale: Scale factors (x, y, z)
+        :param app: Reference to main application
+        :type app: Application
+        :param vao_name: Name of vertex array object to use
+        :type vao_name: str
+        :param tex_id: Texture identifier
+        :type tex_id: str
+        :param pos: Position in world coordinates (x, y, z)
+        :type pos: tuple
+        :param rot: Rotation in degrees (x, y, z)
+        :type rot: tuple
+        :param scale: Scale factors (x, y, z)
+        :type scale: tuple
         """
         self.app = app
         self.pos = pos
@@ -49,8 +54,8 @@ class BaseModel:
         """
         Calculate model matrix combining translation, rotation, and scale.
 
-        Returns:
-            mat4: Model transformation matrix
+        :return: Model transformation matrix
+        :rtype: mat4
         """
         # NOTE: This is just an identity matrix
         m_model = glm.mat4()
@@ -83,7 +88,7 @@ class ExtendedBaseModel(BaseModel):
 
     def update(self):
         """
-            Update dynamic uniform attributes
+        Update dynamic uniform attributes
         """
 
         self.texture.use(location=0)
@@ -137,13 +142,18 @@ class Cube(ExtendedBaseModel):
         """
         Initialize cube model with default parameters.
 
-        Args:
-            app: Reference to main application
-            vao_name: Name of vertex array object (default: 'cube')
-            tex_id: Texture identifier (default: 0)
-            pos: Position in world coordinates (default: origin)
-            rot: Rotation in degrees (default: no rotation)
-            scale: Scale factors (default: unit scale)
+        :param app: Reference to main application
+        :type app: Application
+        :param vao_name: Name of vertex array object (default: 'cube')
+        :type vao_name: str
+        :param tex_id: Texture identifier (default: 0)
+        :type tex_id: int
+        :param pos: Position in world coordinates (default: origin)
+        :type pos: tuple
+        :param rot: Rotation in degrees (default: no rotation)
+        :type rot: tuple
+        :param scale: Scale factors (default: unit scale)
+        :type scale: tuple
         """
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
@@ -178,13 +188,18 @@ class Cat(ExtendedBaseModel):
         """
         Initialize cat model with default orientation.
 
-        Args:
-            app: Reference to main application
-            vao_name: Name of vertex array object (default: 'cat')
-            tex_id: Texture identifier (default: 'cat')
-            pos: Position in world coordinates (default: origin)
-            rot: Rotation in degrees (default: -90° X rotation)
-            scale: Scale factors (default: unit scale)
+        :param app: Reference to main application
+        :type app: Application
+        :param vao_name: Name of vertex array object (default: 'cat')
+        :type vao_name: str
+        :param tex_id: Texture identifier (default: 'cat')
+        :type tex_id: str
+        :param pos: Position in world coordinates (default: origin)
+        :type pos: tuple
+        :param rot: Rotation in degrees (default: -90° X rotation)
+        :type rot: tuple
+        :param scale: Scale factors (default: unit scale)
+        :type scale: tuple
         """
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
@@ -200,13 +215,18 @@ class SkyBox(BaseModel):
         """
         Initialize skybox with cubemap texture.
 
-        Args:
-            app: Reference to main application
-            vao_name: Name of vertex array object (default: 'skybox')
-            tex_id: Texture identifier (default: 'skybox')
-            pos: Position in world coordinates (default: origin)
-            rot: Rotation in degrees (default: no rotation)
-            scale: Scale factors (default: unit scale)
+        :param app: Reference to main application
+        :type app: Application
+        :param vao_name: Name of vertex array object (default: 'skybox')
+        :type vao_name: str
+        :param tex_id: Texture identifier (default: 'skybox')
+        :type tex_id: str
+        :param pos: Position in world coordinates (default: origin)
+        :type pos: tuple
+        :param rot: Rotation in degrees (default: no rotation)
+        :type rot: tuple
+        :param scale: Scale factors (default: unit scale)
+        :type scale: tuple
         """
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         # NOTE: Initialize the model's attributes here
@@ -244,13 +264,18 @@ class AdvancedSkyBox(BaseModel):
         """
         Initialize advanced skybox with cubemap texture.
 
-        Args:
-            app: Reference to main application
-            vao_name: Name of vertex array object (default: 'advanced_skybox')
-            tex_id: Texture identifier (default: 'skybox')
-            pos: Position in world coordinates (default: origin)
-            rot: Rotation in degrees (default: no rotation)
-            scale: Scale factors (default: unit scale)
+        :param app: Reference to main application
+        :type app: Application
+        :param vao_name: Name of vertex array object (default: 'advanced_skybox')
+        :type vao_name: str
+        :param tex_id: Texture identifier (default: 'skybox')
+        :type tex_id: str
+        :param pos: Position in world coordinates (default: origin)
+        :type pos: tuple
+        :param rot: Rotation in degrees (default: no rotation)
+        :type rot: tuple
+        :param scale: Scale factors (default: unit scale)
+        :type scale: tuple
         """
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         # NOTE: Initialize the model's attributes here

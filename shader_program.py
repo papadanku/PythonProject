@@ -13,8 +13,8 @@ class ShaderProgram:
         """
         Initialize shader program manager and load all required shaders.
 
-        Args:
-            ctx: ModernGL context for shader compilation
+        :param ctx: ModernGL context for shader compilation
+        :type ctx: ModernGL context
         """
         self.ctx = ctx
         self.programs = {}
@@ -27,11 +27,10 @@ class ShaderProgram:
         """
         Load and compile vertex/fragment shaders from files.
 
-        Args:
-            shader_program_name: Base name of shader files (without extension)
-
-        Returns:
-            Compiled shader program ready for use
+        :param shader_program_name: Base name of shader files (without extension)
+        :type shader_program_name: str
+        :return: Compiled shader program ready for use
+        :rtype: ShaderProgram
         """
         # Get the vertex shader source code
         with open(f'shaders/{shader_program_name}.vert') as file:

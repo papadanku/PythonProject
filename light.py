@@ -13,9 +13,10 @@ class Light:
         """
         Initialize light with position, color, and intensity components.
 
-        Args:
-            position: Light position in world coordinates (x, y, z)
-            color: Light color as RGB values (default: white)
+        :param position: Light position in world coordinates (x, y, z)
+        :type position: tuple
+        :param color: Light color as RGB values (default: white)
+        :type color: tuple
         """
         self.position = glm.vec3(position)
         self.color = glm.vec3(color)
@@ -31,7 +32,7 @@ class Light:
         """
         Calculate light view matrix for shadow mapping.
 
-        Returns:
-            mat4: View matrix from light's perspective
+        :return: View matrix from light's perspective
+        :rtype: mat4
         """
         return glm.lookAt(self.position, self.direction, glm.vec3(0, 1, 0))

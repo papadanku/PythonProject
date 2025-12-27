@@ -19,8 +19,8 @@ class Texture:
         """
         Initialize texture manager and load all required textures.
 
-        Args:
-            app: Reference to main application
+        :param app: Reference to main application
+        :type app: Application
         """
         self.app = app
         self.ctx = app.ctx
@@ -36,8 +36,8 @@ class Texture:
         """
         Create depth texture for shadow mapping.
 
-        Returns:
-            Depth texture configured for shadow rendering
+        :return: Depth texture configured for shadow rendering
+        :rtype: Texture
         """
         depth_texture = self.ctx.depth_texture(self.app.WIN_SIZE)
         depth_texture.repeat_x = False
@@ -48,12 +48,12 @@ class Texture:
         """
         Load and process cubemap textures for skybox.
 
-        Args:
-            dir_path: Directory containing cubemap face images
-            ext: File extension for cubemap images (default: 'png')
-
-        Returns:
-            Cubemap texture ready for skybox rendering
+        :param dir_path: Directory containing cubemap face images
+        :type dir_path: str
+        :param ext: File extension for cubemap images (default: 'png')
+        :type ext: str
+        :return: Cubemap texture ready for skybox rendering
+        :rtype: Texture
         """
         faces = ['right', 'left', 'top', 'bottom'] + ['front', 'back'][::-1]
         # textures = [pg.image.load(dir_path + f'{face}.{ext}').convert() for face in faces]
@@ -79,11 +79,10 @@ class Texture:
         """
         Load 2D texture with mipmapping and anisotropic filtering.
 
-        Args:
-            path: Path to texture image file
-
-        Returns:
-            Processed 2D texture ready for rendering
+        :param path: Path to texture image file
+        :type path: str
+        :return: Processed 2D texture ready for rendering
+        :rtype: Texture
         """
         # NOTE: Flip the texture along the Y-axis because PyGame has a downward Y-axis
         texture = pg.image.load(path).convert()

@@ -17,8 +17,8 @@ class Mesh:
         """
         Initialize mesh with VAO and texture components.
 
-        Args:
-            app: Reference to main application
+        :param app: Reference to main application
+        :type app: Application
         """
         self.app = app
         self.vao = VAO(app.ctx)
