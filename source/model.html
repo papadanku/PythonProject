@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="yellow" data-content_root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>model module - PythonicEngine documentation</title><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="scene module" href="scene.html" /><link rel="prev" title="mesh module" href="mesh.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1c6635e" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=a318c5d4" />
+    <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="model module"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../index.html">
+      
+      
+      <strong>PythonicEngine</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/papadanku/papadanku.github.io" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="camera.html">camera module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="light.html">light module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh.html">mesh module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scene.html">scene module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scene_renderer.html">scene_renderer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shader_program.html">shader_program module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="texture.html">texture module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vao.html">vao module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vbo.html">vbo module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#model.AdvancedSkyBox"><code class="docutils literal notranslate"><span class="pre">AdvancedSkyBox</span></code></a><ul>
+<li><a class="reference internal" href="#model.AdvancedSkyBox.on_init"><code class="docutils literal notranslate">on_init()</span></code></a></li>
+<li><a class="reference internal" href="#model.AdvancedSkyBox.update"><code class="docutils literal notranslate">update()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model.BaseModel"><code class="docutils literal notranslate"><span class="pre">BaseModel</span></code></a><ul>
+<li><a class="reference internal" href="#model.BaseModel.get_model_matrix"><code class="docutils literal notranslate">get_model_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#model.BaseModel.render"><code class="docutils literal notranslate">render()</span></code></a></li>
+<li><a class="reference internal" href="#model.BaseModel.update"><code class="docutils literal notranslate">update()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model.Cat"><code class="docutils literal notranslate"><span class="pre">Cat</span></code></a></li>
+<li><a class="reference internal" href="#model.Cube"><code class="docutils literal notranslate"><span class="pre">Cube</span></code></a></li>
+<li><a class="reference internal" href="#model.ExtendedBaseModel"><code class="docutils literal notranslate"><span class="pre">ExtendedBaseModel</span></code></a><ul>
+<li><a class="reference internal" href="#model.ExtendedBaseModel.on_init"><code class="docutils literal notranslate">on_init()</span></code></a></li>
+<li><a class="reference internal" href="#model.ExtendedBaseModel.render_shadow"><code class="docutils literal notranslate">render_shadow()</span></code></a></li>
+<li><a class="reference internal" href="#model.ExtendedBaseModel.update"><code class="docutils literal notranslate">update()</span></code></a></li>
+<li><a class="reference internal" href="#model.ExtendedBaseModel.update_shadow"><code class="docutils literal notranslate">update_shadow()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model.MovingCube"><code class="docutils literal notranslate"><span class="pre">MovingCube</span></code></a><ul>
+<li><a class="reference internal" href="#model.MovingCube.update"><code class="docutils literal notranslate">update()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model.SkyBox"><code class="docutils literal notranslate"><span class="pre">SkyBox</span></code></a><ul>
+<li><a class="reference internal" href="#model.SkyBox.on_init"><code class="docutils literal notranslate">on_init()</span></code></a></li>
+<li><a class="reference internal" href="#model.SkyBox.update"><code class="docutils literal notranslate">update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">PythonicEngine</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">Modules</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">model module</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="module-model">
+<span id="model-module"></span><h1>model module<a class="headerlink" href="#module-model" title="Link to this heading">¶</a></h1>
+<p>This module processes uniform attributes for the appropriate model</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="model.AdvancedSkyBox">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">AdvancedSkyBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vao_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'advanced_skybox'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tex_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'skybox'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">1)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#AdvancedSkyBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.AdvancedSkyBox" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#model.BaseModel" title="model.BaseModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></a></p>
+<p>Advanced skybox with proper perspective projection.</p>
+<p>Uses inverse projection-view matrix for accurate cubemap sampling.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.AdvancedSkyBox.on_init">
+<span class="sig-name descname"><span class="pre">on_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#AdvancedSkyBox.on_init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.AdvancedSkyBox.on_init" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize skybox textures.</p>
+<p>Sets up cubemap texture for advanced rendering.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.AdvancedSkyBox.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#AdvancedSkyBox.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.AdvancedSkyBox.update" title="Link to this definition">¶</a></dt>
+<dd><p>Update inverse projection-view matrix for proper cubemap sampling.</p>
+<p>Converts clip coordinates back to world space for accurate texture lookup.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="model.BaseModel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">BaseModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vao_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tex_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">1)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#BaseModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.BaseModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for all 3D models with position, rotation, and scale.</p>
+<p>Provides fundamental model matrix calculations and rendering functionality.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.BaseModel.get_model_matrix">
+<span class="sig-name descname"><span class="pre">get_model_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#BaseModel.get_model_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.BaseModel.get_model_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate model matrix combining translation, rotation, and scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Model transformation matrix</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>mat4</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.BaseModel.render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#BaseModel.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.BaseModel.render" title="Link to this definition">¶</a></dt>
+<dd><p>Update model state and render using associated VAO.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.BaseModel.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#BaseModel.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.BaseModel.update" title="Link to this definition">¶</a></dt>
+<dd><p>Update model state before rendering.</p>
+<p>Subclasses override this method for custom behavior.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="model.Cat">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">Cat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vao_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cat'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tex_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cat'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-90,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">1)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#Cat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Cat" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#model.ExtendedBaseModel" title="model.ExtendedBaseModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtendedBaseModel</span></code></a></p>
+<p>Cat model with specific orientation and texture.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="model.Cube">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">Cube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vao_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cube'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tex_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">1)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#Cube"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Cube" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#model.ExtendedBaseModel" title="model.ExtendedBaseModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtendedBaseModel</span></code></a></p>
+<p>Basic cube model with texture and lighting support.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="model.ExtendedBaseModel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">ExtendedBaseModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vao_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tex_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#ExtendedBaseModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.ExtendedBaseModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#model.BaseModel" title="model.BaseModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></a></p>
+<p>Subclass for an application’s main objects</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.ExtendedBaseModel.on_init">
+<span class="sig-name descname"><span class="pre">on_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#ExtendedBaseModel.on_init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.ExtendedBaseModel.on_init" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.ExtendedBaseModel.render_shadow">
+<span class="sig-name descname"><span class="pre">render_shadow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#ExtendedBaseModel.render_shadow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.ExtendedBaseModel.render_shadow" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.ExtendedBaseModel.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#ExtendedBaseModel.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.ExtendedBaseModel.update" title="Link to this definition">¶</a></dt>
+<dd><p>Update dynamic uniform attributes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.ExtendedBaseModel.update_shadow">
+<span class="sig-name descname"><span class="pre">update_shadow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#ExtendedBaseModel.update_shadow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.ExtendedBaseModel.update_shadow" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="model.MovingCube">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">MovingCube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#MovingCube"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.MovingCube" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#model.Cube" title="model.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a></p>
+<p>Animated cube that rotates continuously.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.MovingCube.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#MovingCube.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.MovingCube.update" title="Link to this definition">¶</a></dt>
+<dd><p>Update cube rotation based on application time.</p>
+<p>Creates continuous spinning animation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="model.SkyBox">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">SkyBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vao_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'skybox'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tex_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'skybox'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">1)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#SkyBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.SkyBox" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#model.BaseModel" title="model.BaseModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></a></p>
+<p>Basic skybox that renders a cubemap texture.</p>
+<p>Uses simplified view matrix to prevent skybox rotation with camera.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.SkyBox.on_init">
+<span class="sig-name descname"><span class="pre">on_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#SkyBox.on_init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.SkyBox.on_init" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize skybox textures and matrices.</p>
+<p>Sets up cubemap texture and projection/view matrices.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.SkyBox.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/model.html#SkyBox.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.SkyBox.update" title="Link to this definition">¶</a></dt>
+<dd><p>Update skybox view matrix to remove camera rotation.</p>
+<p>Prevents skybox from rotating with camera movement.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="mesh.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">mesh module</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="scene.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">scene module</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, papadanku</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/papadanku/papadanku.github.io" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a>
+<a href="https://www.youtube.com/@papadanku" aria-label="YouTube">
+  <iconify-icon icon="simple-icons:youtube"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/shibuya.js?v=cac61aee"></script></body>
+</html>

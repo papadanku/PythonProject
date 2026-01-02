@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="yellow" data-content_root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>vbo module - PythonicEngine documentation</title><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="vao module" href="vao.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1c6635e" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=a318c5d4" />
+    <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="vbo module"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../index.html">
+      
+      
+      <strong>PythonicEngine</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/papadanku/papadanku.github.io" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="camera.html">camera module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="light.html">light module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh.html">mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scene.html">scene module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scene_renderer.html">scene_renderer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shader_program.html">shader_program module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="texture.html">texture module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vao.html">vao module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">vbo module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#vbo.AdvancedSkyBoxVBO"><code class="docutils literal notranslate"><span class="pre">AdvancedSkyBoxVBO</span></code></a><ul>
+<li><a class="reference internal" href="#vbo.AdvancedSkyBoxVBO.get_vertex_data"><code class="docutils literal notranslate">get_vertex_data()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vbo.BaseVBO"><code class="docutils literal notranslate"><span class="pre">BaseVBO</span></code></a><ul>
+<li><a class="reference internal" href="#vbo.BaseVBO.destroy"><code class="docutils literal notranslate">destroy()</span></code></a></li>
+<li><a class="reference internal" href="#vbo.BaseVBO.get_vbo"><code class="docutils literal notranslate">get_vbo()</span></code></a></li>
+<li><a class="reference internal" href="#vbo.BaseVBO.get_vertex_data"><code class="docutils literal notranslate">get_vertex_data()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vbo.CatVBO"><code class="docutils literal notranslate"><span class="pre">CatVBO</span></code></a><ul>
+<li><a class="reference internal" href="#vbo.CatVBO.get_vertex_data"><code class="docutils literal notranslate">get_vertex_data()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vbo.CubeVBO"><code class="docutils literal notranslate"><span class="pre">CubeVBO</span></code></a><ul>
+<li><a class="reference internal" href="#vbo.CubeVBO.get_data"><code class="docutils literal notranslate">get_data()</span></code></a></li>
+<li><a class="reference internal" href="#vbo.CubeVBO.get_vertex_data"><code class="docutils literal notranslate">get_vertex_data()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vbo.SkyBoxVBO"><code class="docutils literal notranslate"><span class="pre">SkyBoxVBO</span></code></a><ul>
+<li><a class="reference internal" href="#vbo.SkyBoxVBO.get_data"><code class="docutils literal notranslate">get_data()</span></code></a></li>
+<li><a class="reference internal" href="#vbo.SkyBoxVBO.get_vertex_data"><code class="docutils literal notranslate">get_vertex_data()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vbo.VBO"><code class="docutils literal notranslate"><span class="pre">VBO</span></code></a><ul>
+<li><a class="reference internal" href="#vbo.VBO.destroy"><code class="docutils literal notranslate">destroy()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">PythonicEngine</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">Modules</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">vbo module</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="module-vbo">
+<span id="vbo-module"></span><h1>vbo module<a class="headerlink" href="#module-vbo" title="Link to this heading">¶</a></h1>
+<p>This module processes an application’s vertex buffer objects (VBOs). VBOs are buffer objects we use for vertex processing.</p>
+<p>In reality, we can use buffer objects for means outside of vertex processing.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="vbo.AdvancedSkyBoxVBO">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vbo.</span></span><span class="sig-name descname"><span class="pre">AdvancedSkyBoxVBO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#AdvancedSkyBoxVBO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.AdvancedSkyBoxVBO" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#vbo.BaseVBO" title="vbo.BaseVBO"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseVBO</span></code></a></p>
+<p>Advanced skybox VBO using fullscreen triangle for efficient rendering.</p>
+<p>Generates a large triangle that covers the entire screen for skybox projection.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vbo.AdvancedSkyBoxVBO.get_vertex_data">
+<span class="sig-name descname"><span class="pre">get_vertex_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#AdvancedSkyBoxVBO.get_vertex_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.AdvancedSkyBoxVBO.get_vertex_data" title="Link to this definition">¶</a></dt>
+<dd><p>Generate vertex data for fullscreen triangle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>NumPy array containing three vertices that cover screen space</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vbo.BaseVBO">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vbo.</span></span><span class="sig-name descname"><span class="pre">BaseVBO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#BaseVBO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.BaseVBO" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for vertex buffer objects.</p>
+<p>Provides common VBO functionality that subclasses extend with specific geometry.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vbo.BaseVBO.destroy">
+<span class="sig-name descname"><span class="pre">destroy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#BaseVBO.destroy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.BaseVBO.destroy" title="Link to this definition">¶</a></dt>
+<dd><p>Release vertex buffer resources.</p>
+<p>Clean up VBO when no longer needed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vbo.BaseVBO.get_vbo">
+<span class="sig-name descname"><span class="pre">get_vbo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#BaseVBO.get_vbo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.BaseVBO.get_vbo" title="Link to this definition">¶</a></dt>
+<dd><p>Create vertex buffer object from vertex data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Vertex buffer object containing geometry data</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#vbo.VBO" title="vbo.VBO">VBO</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vbo.BaseVBO.get_vertex_data">
+<span class="sig-name descname"><span class="pre">get_vertex_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#BaseVBO.get_vertex_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.BaseVBO.get_vertex_data" title="Link to this definition">¶</a></dt>
+<dd><p>Get vertex data for specific geometry.</p>
+<p>Subclasses override this method with geometry-specific implementation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vbo.CatVBO">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vbo.</span></span><span class="sig-name descname"><span class="pre">CatVBO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#CatVBO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.CatVBO" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#vbo.BaseVBO" title="vbo.BaseVBO"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseVBO</span></code></a></p>
+<p>Cat model vertex buffer object loaded from OBJ file.</p>
+<p>Uses pywavefront to load complex mesh data with textures and normals.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vbo.CatVBO.get_vertex_data">
+<span class="sig-name descname"><span class="pre">get_vertex_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#CatVBO.get_vertex_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.CatVBO.get_vertex_data" title="Link to this definition">¶</a></dt>
+<dd><p>Load cat model vertex data from OBJ file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>NumPy array containing cat mesh vertex data</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vbo.CubeVBO">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vbo.</span></span><span class="sig-name descname"><span class="pre">CubeVBO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#CubeVBO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.CubeVBO" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#vbo.BaseVBO" title="vbo.BaseVBO"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseVBO</span></code></a></p>
+<p>Cube vertex buffer object with texture coordinates and normals.</p>
+<p>Generates vertex data for a unit cube centered at origin.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vbo.CubeVBO.get_data">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#CubeVBO.get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.CubeVBO.get_data" title="Link to this definition">¶</a></dt>
+<dd><p>Extract vertex data from vertices using indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertices</strong> (<em>list</em>) – List of vertex positions</p></li>
+<li><p><strong>indices</strong> (<em>list</em>) – List of triangle indices</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>NumPy array of vertex data in order specified by indices</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vbo.CubeVBO.get_vertex_data">
+<span class="sig-name descname"><span class="pre">get_vertex_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#CubeVBO.get_vertex_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.CubeVBO.get_vertex_data" title="Link to this definition">¶</a></dt>
+<dd><p>Generate complete vertex data for cube including positions, normals, and texture coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>NumPy array containing interleaved vertex data</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vbo.SkyBoxVBO">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vbo.</span></span><span class="sig-name descname"><span class="pre">SkyBoxVBO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#SkyBoxVBO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.SkyBoxVBO" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#vbo.BaseVBO" title="vbo.BaseVBO"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseVBO</span></code></a></p>
+<p>Skybox vertex buffer object for cubemap rendering.</p>
+<p>Generates inside-out cube geometry for skybox rendering.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vbo.SkyBoxVBO.get_data">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#SkyBoxVBO.get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.SkyBoxVBO.get_data" title="Link to this definition">¶</a></dt>
+<dd><p>Extract vertex data from vertices using indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertices</strong> (<em>list</em>) – List of vertex positions</p></li>
+<li><p><strong>indices</strong> (<em>list</em>) – List of triangle indices</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>NumPy array of vertex data in order specified by indices</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vbo.SkyBoxVBO.get_vertex_data">
+<span class="sig-name descname"><span class="pre">get_vertex_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#SkyBoxVBO.get_vertex_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.SkyBoxVBO.get_vertex_data" title="Link to this definition">¶</a></dt>
+<dd><p>Generate vertex data for inside-out skybox cube.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>NumPy array containing skybox vertex data</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vbo.VBO">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vbo.</span></span><span class="sig-name descname"><span class="pre">VBO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#VBO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.VBO" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vbo.VBO.destroy">
+<span class="sig-name descname"><span class="pre">destroy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vbo.html#VBO.destroy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vbo.VBO.destroy" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="vao.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">vao module</div></div>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, papadanku</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/papadanku/papadanku.github.io" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a>
+<a href="https://www.youtube.com/@papadanku" aria-label="YouTube">
+  <iconify-icon icon="simple-icons:youtube"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/shibuya.js?v=cac61aee"></script></body>
+</html>
