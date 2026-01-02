@@ -6,6 +6,7 @@ if __name__ == '__main__':
 class Light:
     """
     Directional light source with ambient, diffuse, and specular components.
+
     Provides lighting calculations and shadow mapping view matrix.
     """
 

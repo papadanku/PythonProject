@@ -12,6 +12,7 @@ if __name__ == '__main__':
 class Texture:
     """
     Load and manage 2D and cubemap textures.
+
     Handles texture loading, processing, and OpenGL resource management.
     """
 
@@ -99,6 +100,7 @@ class Texture:
     def destroy(self):
         """
         Release all texture resources from memory.
+
         Clean up loaded textures when texture manager is destroyed.
         """
         [tex.release() for tex in self.textures.values()]

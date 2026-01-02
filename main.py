@@ -20,6 +20,7 @@ from scene_renderer import SceneRenderer
 class GraphicsEngine():
     """
     Main graphics engine that initializes OpenGL context, manages game loop, and coordinates all rendering components.
+
     Handles window creation, input processing, and rendering pipeline execution.
     """
 
@@ -66,6 +67,7 @@ class GraphicsEngine():
     def get_time(self):
         """
         Update current time in seconds since application start.
+
         Converts milliseconds to seconds for consistent time units.
         """
         self.time = pg.time.get_ticks() * 0.001
@@ -73,6 +75,7 @@ class GraphicsEngine():
     def check_events(self):
         """
         Process PyGame events and handle window close/escape key.
+
         Cleans up resources and exits application when quit event occurs.
         """
         for event in pg.event.get():
@@ -86,6 +89,7 @@ class GraphicsEngine():
     def render(self):
         """
         Clear framebuffer, render scene, and swap buffers.
+
         Sets background color and executes complete rendering pipeline.
         """
         # Clear framebuffer
@@ -98,6 +102,7 @@ class GraphicsEngine():
     def run(self):
         """
         Main game loop that updates time, processes events, updates camera, and renders scene.
+
         Runs at 60 FPS and maintains consistent delta time for smooth animations.
         """
         while True:

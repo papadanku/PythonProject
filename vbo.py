@@ -1,10 +1,8 @@
 
 """
-This module processes an application's vertex buffer objects (VBOs)
+This module processes an application's vertex buffer objects (VBOs). VBOs are buffer objects we use for vertex processing.
 
-NOTE:
-- VBOs are buffer objects we use for vertex processing
-- In reality, we can use buffer objects for means outside of vertex processing
+In reality, we can use buffer objects for means outside of vertex processing.
 """
 
 # Import Python modules
@@ -28,6 +26,7 @@ class VBO:
 class BaseVBO:
     """
     Base class for vertex buffer objects.
+
     Provides common VBO functionality that subclasses extend with specific geometry.
     """
 
@@ -46,6 +45,7 @@ class BaseVBO:
     def get_vertex_data(self):
         """
         Get vertex data for specific geometry.
+
         Subclasses override this method with geometry-specific implementation.
         """
         ...
@@ -64,6 +64,7 @@ class BaseVBO:
     def destroy(self):
         """
         Release vertex buffer resources.
+
         Clean up VBO when no longer needed.
         """
         self.vbo.release()
@@ -72,6 +73,7 @@ class BaseVBO:
 class CubeVBO(BaseVBO):
     """
     Cube vertex buffer object with texture coordinates and normals.
+
     Generates vertex data for a unit cube centered at origin.
     """
 
@@ -150,6 +152,7 @@ class CubeVBO(BaseVBO):
 class CatVBO(BaseVBO):
     """
     Cat model vertex buffer object loaded from OBJ file.
+
     Uses pywavefront to load complex mesh data with textures and normals.
     """
 
@@ -181,6 +184,7 @@ class CatVBO(BaseVBO):
 class SkyBoxVBO(BaseVBO):
     """
     Skybox vertex buffer object for cubemap rendering.
+
     Generates inside-out cube geometry for skybox rendering.
     """
 
@@ -236,6 +240,7 @@ class SkyBoxVBO(BaseVBO):
 class AdvancedSkyBoxVBO(BaseVBO):
     """
     Advanced skybox VBO using fullscreen triangle for efficient rendering.
+
     Generates a large triangle that covers the entire screen for skybox projection.
     """
 

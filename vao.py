@@ -11,6 +11,7 @@ from vbo import VBO
 class VAO:
     """
     Create and manage Vertex Array Objects for different shader programs.
+
     Formats vertex buffer data into renderable objects with attribute bindings.
     """
 
@@ -73,6 +74,7 @@ class VAO:
     def destroy(self):
         """
         Release VBO and shader program resources.
+
         Clean up all VAO-related resources when destroyed.
         """
         self.vbo.destroy()

@@ -2,6 +2,7 @@
 class SceneRenderer:
     """
     Handle multi-pass rendering including shadow mapping and main scene rendering.
+
     Coordinates complete rendering pipeline with depth buffer and final output.
     """
 
@@ -23,6 +24,7 @@ class SceneRenderer:
     def render_shadow(self):
         """
         Render depth buffer for shadow mapping.
+
         Clears and uses depth framebuffer, then renders all objects for shadow calculation.
         """
         self.depth_fbo.clear()
@@ -33,6 +35,7 @@ class SceneRenderer:
     def main_render(self):
         """
         Render main scene with textures and lighting.
+
         Uses screen framebuffer and renders all objects plus skybox.
         """
         self.app.ctx.screen.use()
@@ -43,6 +46,7 @@ class SceneRenderer:
     def render(self):
         """
         Execute complete rendering pipeline.
+
         Updates scene, performs shadow pass, then renders main scene.
         """
         self.scene.update()
@@ -54,6 +58,7 @@ class SceneRenderer:
     def destroy(self):
         """
         Release framebuffer resources.
+
         Clean up depth framebuffer when renderer is destroyed.
         """
         self.depth_fbo.release()

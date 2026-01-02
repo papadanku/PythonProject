@@ -11,6 +11,7 @@ if __name__ == '__main__':
 class BaseModel:
     """
     Base class for all 3D models with position, rotation, and scale.
+
     Provides fundamental model matrix calculations and rendering functionality.
     """
 
@@ -45,6 +46,7 @@ class BaseModel:
     def update(self):
         """
         Update model state before rendering.
+
         Subclasses override this method for custom behavior.
         """
 
@@ -172,6 +174,7 @@ class MovingCube(Cube):
     def update(self):
         """
         Update cube rotation based on application time.
+
         Creates continuous spinning animation.
         """
         self.m_model = self.get_model_matrix()
@@ -207,6 +210,7 @@ class Cat(ExtendedBaseModel):
 class SkyBox(BaseModel):
     """
     Basic skybox that renders a cubemap texture.
+
     Uses simplified view matrix to prevent skybox rotation with camera.
     """
 
@@ -235,6 +239,7 @@ class SkyBox(BaseModel):
     def update(self):
         """
         Update skybox view matrix to remove camera rotation.
+
         Prevents skybox from rotating with camera movement.
         """
         self.program['m_view'].write(glm.mat4(glm.mat3(self.camera.m_view)))
@@ -242,6 +247,7 @@ class SkyBox(BaseModel):
     def on_init(self):
         """
         Initialize skybox textures and matrices.
+
         Sets up cubemap texture and projection/view matrices.
         """
         # Assign uniform textures to a shader program
@@ -256,6 +262,7 @@ class SkyBox(BaseModel):
 class AdvancedSkyBox(BaseModel):
     """
     Advanced skybox with proper perspective projection.
+
     Uses inverse projection-view matrix for accurate cubemap sampling.
     """
 
@@ -284,6 +291,7 @@ class AdvancedSkyBox(BaseModel):
     def update(self):
         """
         Update inverse projection-view matrix for proper cubemap sampling.
+
         Converts clip coordinates back to world space for accurate texture lookup.
         """
         m_view = glm.mat4(glm.mat3(self.camera.m_view))
@@ -292,6 +300,7 @@ class AdvancedSkyBox(BaseModel):
     def on_init(self):
         """
         Initialize skybox textures.
+
         Sets up cubemap texture for advanced rendering.
         """
         # Assign uniform textures to a shader program

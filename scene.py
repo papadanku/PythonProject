@@ -11,6 +11,7 @@ from model import *
 class Scene:
     """
     Manage collection of 3D objects and scene composition.
+
     Handles scene loading, object management, and dynamic updates.
     """
 
@@ -39,6 +40,7 @@ class Scene:
     def load(self):
         """
         Create and position all scene objects including floor, columns, cat, and moving cube.
+
         Sets up complete 3D environment with various textures and models.
         """
         app = self.app
@@ -65,6 +67,7 @@ class Scene:
     def update(self):
         """
         Update dynamic objects in scene.
+
         Animates moving cube based on application time.
         """
         self.moving_cube.rot.xyz = self.app.time

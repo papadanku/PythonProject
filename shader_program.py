@@ -6,6 +6,7 @@ This module generates and destroys an application's shader programs
 class ShaderProgram:
     """
     Manage compilation and lifecycle of GLSL shader programs.
+
     Loads, compiles, and maintains shader programs for different rendering techniques.
     """
 
@@ -47,6 +48,7 @@ class ShaderProgram:
     def destroy(self):
         """
         Release program data from memory.
+
         Clean up all compiled shader programs.
         """
         # Release program data from memory

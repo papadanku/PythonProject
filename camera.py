@@ -14,6 +14,7 @@ SENSITIVITY = 0.05 # Mouse look sensitivity
 class Camera:
     """
     First-person camera that handles view projection, movement, and rotation.
+
     Provides matrix calculations for 3D scene rendering and user navigation.
     """
 
@@ -50,6 +51,7 @@ class Camera:
     def rotate(self):
         """
         Update camera yaw and pitch based on mouse movement.
+
         Applies sensitivity scaling and clamps pitch to prevent over-rotation.
         """
         rel_x, rel_y = pg.mouse.get_rel()
@@ -60,6 +62,7 @@ class Camera:
     def update_camera_vectors(self):
         """
         Recalculate forward, right, and up vectors based on current orientation.
+
         Uses spherical coordinates to convert yaw/pitch angles to 3D direction vectors.
         """
         yaw = glm.radians(self.yaw)
@@ -76,6 +79,7 @@ class Camera:
     def update(self):
         """
         Update camera position and orientation each frame.
+
         Handles movement, rotation, and recalculates view matrix.
         """
         self.move()
@@ -87,6 +91,7 @@ class Camera:
     def move(self):
         """
         Handle keyboard input for camera movement in 3D space.
+
         Uses WASD for horizontal movement and QE for vertical movement.
         """
         velocity = SPEED * self.app.delta_time

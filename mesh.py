@@ -10,6 +10,7 @@ from vao import VAO
 class Mesh:
     """
     Manage vertex array objects and textures for rendering.
+
     Centralizes mesh data including geometry, materials, and rendering state.
     """
 
@@ -27,6 +28,7 @@ class Mesh:
     def destroy(self):
         """
         Release VAO and texture resources from memory.
+
         Clean up all mesh-related OpenGL objects.
         """
         self.vao.destroy()
